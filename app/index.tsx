@@ -4,7 +4,6 @@ import {
   View,
   ScrollView,
   TouchableOpacity,
-  TextInput,
   Image,
   Dimensions,
 } from "react-native";
@@ -110,7 +109,6 @@ export default function Index() {
   const [searchQuery, setSearchQuery] = useState("");
 
   const handlePropertyPress = (propertyId) => {
-    // Navigate to property details
     router.push(`/property/${propertyId}`);
   };
 
