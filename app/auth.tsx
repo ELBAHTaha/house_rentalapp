@@ -33,7 +33,7 @@ export default function Auth() {
         onPress={async () => {
           try {
             await signInWithEmailAndPassword(auth, email, password);
-          } catch (error) {
+          } catch (error: any) {
             alert(error.message);
           }
         }}
@@ -46,7 +46,7 @@ export default function Auth() {
           try {
             await createUserWithEmailAndPassword(auth, email, password);
             await signInWithEmailAndPassword(auth, email, password);
-          } catch (error) {
+          } catch (error: any) {
             alert(error.message);
           }
         }}

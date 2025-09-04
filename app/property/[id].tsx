@@ -22,17 +22,12 @@ const mockProperty = {
   price: 120,
   rating: 4.8,
   reviews: 127,
-  images: [
-    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop",
-    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop",
-    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop",
-    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop",
-  ],
+  images: ["https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop"],
   amenities: [
-    "WiFi", "Kitchen", "Pool", "Gym", "Air Conditioning", 
+    "WiFi", "Kitchen", "Pool", "Gym", "Air Conditioning",
     "Heating", "Washer", "Dryer", "Free Parking", "Balcony"
   ],
-  description: "This modern apartment is located in the heart of downtown, offering stunning city views and easy access to all major attractions. The space features contemporary design, high-end appliances, and comfortable furnishings perfect for both business and leisure travelers.",
+description: "This modern apartment is located in the heart of downtown, offering stunning city views and easy access to all major attractions. The space features contemporary design, high-end appliances, and comfortable furnishings perfect for both business and leisure travelers.",
   host: {
     name: "Sarah Johnson",
     avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face",
@@ -73,7 +68,7 @@ const mockProperty = {
   ],
 };
 
-const ImageCarousel = ({ images }) => {
+const ImageCarousel = ({ images }: { images: string[] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   return (
@@ -87,7 +82,7 @@ const ImageCarousel = ({ images }) => {
           setCurrentIndex(newIndex);
         }}
       >
-        {images.map((image, index) => (
+        {images.map((image: string, index: number) => (
           <Image
             key={index}
             source={{ uri: image }}
@@ -99,7 +94,7 @@ const ImageCarousel = ({ images }) => {
       
       {/* Image Indicators */}
       <View className="absolute bottom-4 left-0 right-0 flex-row justify-center">
-        {images.map((_, index) => (
+        {images.map((_: any, index: number) => (
           <View
             key={index}
             className={`w-2 h-2 rounded-full mx-1 ${
@@ -128,7 +123,7 @@ const ImageCarousel = ({ images }) => {
   );
 };
 
-const AmenityItem = ({ amenity }) => (
+const AmenityItem = ({ amenity }: { amenity: string }) => (
   <View className="flex-row items-center mb-3">
     <View className="bg-cyan-100 w-8 h-8 rounded-full items-center justify-center mr-3">
       <Ionicons name="checkmark" size={16} color="#0891b2" />
@@ -137,7 +132,7 @@ const AmenityItem = ({ amenity }) => (
   </View>
 );
 
-const ReviewItem = ({ review }) => (
+const ReviewItem = ({ review }: { review: any }) => (
   <View className="bg-white rounded-xl p-4 mb-4 border border-gray-100">
     <View className="flex-row items-center mb-3">
       <Image
@@ -148,7 +143,7 @@ const ReviewItem = ({ review }) => (
         <Text className="font-medium text-gray-800">{review.user}</Text>
         <View className="flex-row items-center">
           <View className="flex-row items-center mr-2">
-            {[...Array(5)].map((_, index) => (
+            {[...Array(5)].map((_: any, index: number) => (
               <Ionicons
                 key={index}
                 name={index < review.rating ? "star" : "star-outline"}

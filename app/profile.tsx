@@ -28,14 +28,28 @@ const mockUser = {
   },
 };
 
-const ProfileSection = ({ title, children }) => (
+const ProfileSection = ({ title, children }: { title: string; children: React.ReactNode }) => (
   <View className="mb-6">
     <Text className="text-lg font-bold text-gray-800 mb-3">{title}</Text>
     {children}
   </View>
 );
 
-const ProfileItem = ({ icon, title, subtitle, onPress, showArrow = true, rightComponent }) => (
+const ProfileItem = ({
+  icon,
+  title,
+  subtitle,
+  onPress,
+  showArrow = true,
+  rightComponent,
+}: {
+  icon: string;
+  title: string;
+  subtitle?: string;
+  onPress: () => void;
+  showArrow?: boolean;
+  rightComponent?: React.ReactNode;
+}) => (
   <TouchableOpacity
     onPress={onPress}
     className="bg-white rounded-xl p-4 mb-3 border border-gray-100 flex-row items-center"
@@ -59,7 +73,19 @@ const ProfileItem = ({ icon, title, subtitle, onPress, showArrow = true, rightCo
   </TouchableOpacity>
 );
 
-const SwitchItem = ({ icon, title, subtitle, value, onValueChange }) => (
+const SwitchItem = ({
+  icon,
+  title,
+  subtitle,
+  value,
+  onValueChange,
+}: {
+  icon: string;
+  title: string;
+  subtitle?: string;
+  value: boolean;
+  onValueChange: (value: boolean) => void;
+}) => (
   <View className="bg-white rounded-xl p-4 mb-3 border border-gray-100 flex-row items-center">
     <View className="bg-cyan-100 w-10 h-10 rounded-full items-center justify-center mr-4">
       <Ionicons name={icon} size={20} color="#0891b2" />
@@ -85,17 +111,17 @@ export default function Profile() {
   const [user, setUser] = useState(mockUser);
   const [preferences, setPreferences] = useState(user.preferences);
 
-  const handleEditProfile = () => {
+ const handleEditProfile = () => {
     // Navigate to edit profile screen
-    router.push("/edit-profile");
+    router.push("/profile");
   };
 
-  const handleViewBookings = () => {
-    router.push("/bookings");
+ const handleViewBookings = () => {
+    router.push("/profile");
   };
 
   const handleViewFavorites = () => {
-    router.push("/favorites");
+    router.push("/profile");
   };
 
   const handlePaymentMethods = () => {
@@ -139,7 +165,7 @@ export default function Profile() {
     );
   };
 
-  const updatePreference = (key, value) => {
+  const updatePreference = (key: string, value: boolean) => {
     setPreferences(prev => ({
       ...prev,
       [key]: value
