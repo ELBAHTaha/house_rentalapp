@@ -4,12 +4,15 @@ import React, { useState } from "react";
 import {
   Alert,
   Image,
+  Linking,
   ScrollView,
   Switch,
   Text,
   TouchableOpacity,
-  View,
+  View
 } from "react-native";
+
+type IoniconName = keyof typeof Ionicons.glyphMap;
 
 // Mock user data
 const mockUser = {
@@ -43,7 +46,7 @@ const ProfileItem = ({
   showArrow = true,
   rightComponent,
 }: {
-  icon: string;
+  icon: IoniconName;
   title: string;
   subtitle?: string;
   onPress: () => void;
@@ -80,7 +83,7 @@ const SwitchItem = ({
   value,
   onValueChange,
 }: {
-  icon: string;
+  icon: IoniconName;
   title: string;
   subtitle?: string;
   value: boolean;
@@ -111,12 +114,12 @@ export default function Profile() {
   const [user, setUser] = useState(mockUser);
   const [preferences, setPreferences] = useState(user.preferences);
 
- const handleEditProfile = () => {
+  const handleEditProfile = () => {
     // Navigate to edit profile screen
-    router.push("/profile");
+    Linking.openURL("exp://localhost:19000/--/profile")
   };
 
- const handleViewBookings = () => {
+  const handleViewBookings = () => {
     router.push("/profile");
   };
 
@@ -229,8 +232,8 @@ export default function Profile() {
             onPress={handlePaymentMethods}
           />
           
-          <ProfileItem
-            icon="location"
+ <ProfileItem
+            icon="location-outline"
             title="Saved Addresses"
             subtitle="Home, work, favorite places"
             onPress={() => Alert.alert("Saved Addresses", "This feature is coming soon!")}
@@ -280,7 +283,7 @@ export default function Profile() {
           />
           
           <SwitchItem
-            icon="location"
+            icon="location-outline"
             title="Location Services"
             subtitle="Find properties near you"
             value={preferences.locationServices}
